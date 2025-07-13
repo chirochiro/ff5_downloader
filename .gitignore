@@ -8,3 +8,6 @@ wheels/
 
 # Virtual environments
 .venv
+
+# dataディレクトリの内容は無視
+data/*

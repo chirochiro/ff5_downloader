@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 import requests
 import zipfile
 import io
@@ -43,6 +43,7 @@ def download_ff5_monthly(save_path: str):
         pl.col(col).cast(pl.Float64) / 100.0 for col in columns[1:]
     ])
 
-    # 保存（dataディレクトリは既に存在する想定）
-    df.write_csv(save_path)
-    print(f"Saved to {save_path}")
+    # 保存
+    save_path_obj = Path(save_path)
+    df.write_csv(str(save_path_obj))  # polarsはstr型を要求する
+    print(f"Saved to {save_path_obj.resolve()}")
